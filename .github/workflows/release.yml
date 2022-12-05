@@ -1,5 +1,6 @@
 name: "Release"
 
+# https://qiita.com/okazy/items/7ab46f2c20ec341a2836
 on:
   pull_request:
     branches:
