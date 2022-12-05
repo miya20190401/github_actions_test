@@ -17,13 +17,10 @@ jobs:
       - name: Show current datetime
         run: echo ${{ env.YYYYMMDD }}
 
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1.0.0
+      - uses: actions/checkout@v3
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          tag_name: release_${{ env.YYYYMMDD }}
-          release_name: Release/${{ env.YYYYMMDD }}
-          draft: true
-          prerelease: false
+          title: Release/${{ env.YYYYMMDD }}
