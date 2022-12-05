@@ -1,13 +1,15 @@
 name: "Release"
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - master
+    types: [closed]
 
 jobs:
-  build:
+  tag:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
 
     steps:
       # https://qiita.com/itouuuuuuuuu/items/ebf0d4c306b54747374f
