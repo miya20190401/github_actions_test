@@ -1,0 +1,19 @@
+name: "Get current datetime"
+
+# https://qiita.com/itouuuuuuuuu/items/ebf0d4c306b54747374f
+
+on: [ workflow_dispatch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set current datetime as env variable
+        env:
+          TZ: 'Asia/Tokyo' # タイムゾーン指定
+        run: echo "MY_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Show current datetime
+        run: echo ${{ env.MY_DATETIME }}
+        
