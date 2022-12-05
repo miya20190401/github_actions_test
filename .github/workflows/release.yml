@@ -12,7 +12,7 @@ jobs:
       - name: Set current datetime as env variable
         env:
           TZ: 'Asia/Tokyo' # タイムゾーン指定
-        run: echo "YYYYMMDD=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        run: echo "YYYYMMDD=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
 
       - name: Show current datetime
         run: echo ${{ env.YYYYMMDD }}
