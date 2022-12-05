@@ -1,19 +1,20 @@
 name: "Release"
 
-# http://skawashima.com/blog/2019/12/github-actions-auto-release/
-
-on: [ workflow_dispatch ]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      # https://qiita.com/itouuuuuuuuu/items/ebf0d4c306b54747374f
       - name: Set current datetime as env variable
         env:
           TZ: 'Asia/Tokyo' # タイムゾーン指定
         run: echo "YYYYMMDD=$(date +'%Y%m%d')" >> $GITHUB_ENV
-
       - name: Show current datetime
         run: echo ${{ env.YYYYMMDD }}
 
