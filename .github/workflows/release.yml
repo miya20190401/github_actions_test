@@ -1,0 +1,29 @@
+name: "Release"
+
+# http://skawashima.com/blog/2019/12/github-actions-auto-release/
+
+on: [ workflow_dispatch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set current datetime as env variable
+        env:
+          TZ: 'Asia/Tokyo' # タイムゾーン指定
+        run: echo "YYYYMMDD=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
+      - name: Show current datetime
+        run: echo ${{ env.YYYYMMDD }}
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release_${{ env.YYYYMMDD }}
+          release_name: Release/${{ env.YYYYMMDD }}
+          draft: true
+          prerelease: false
